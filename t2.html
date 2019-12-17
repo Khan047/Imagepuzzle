@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<head>
+  <script src="jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="jquery-ui.min.css">
+  <script src="external/jquery/jquery.js"></script>
+  <script src="jquery-ui.min.js"></script>
+	<script>
+  
+  window.addEventListener('DOMContentLoaded', (event) => {
+    $(document).ready(function(){
+     // startGame();
+           });
+  const input = document.querySelector('input[type="file"]')
+  var files = input.files;
+  var file;
+  const reader =new FileReader();
+  function handleFiles (files) {
+  console.log(files)
+  var j=1;
+  for (let i = 0; i < files.length; i++) {
+    file = files[i];
+    const reader = new FileReader();
+    reader.readAsDataURL(files[i]);
+    reader.onload=function(){
+    var x = new Image();
+    x.src=reader.result;
+    x.setAttribute("onclick","swap(this.id)");
+    x.setAttribute("id","imgi"+i);
+    x.setAttribute("class","imgc");
+    x.setAttribute("width", "100");
+    x.setAttribute("height", "100");
+    x.setAttribute("alt", "failed");
+    document.getElementById("div"+j).appendChild(x);
+    j=j+1;
+
+
+    
+      
+        }
+  }
+
+    }
+    
+input.addEventListener('change', function (e) {
+  handleFiles(input.files)
+}, false);
+
+
+});
+function startGame() {
+var squares = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9", "sq10", "sq11", "sq12", "sq13", "sq14", "sq15", "sq16"];
+var empty = [];
+var arr = new Array(11, 1, 13, 6, 12, 10, 9, 7, 5, 8, 15, 14, 4, 2, 3, 16);
+for (i = 0; i < arr.length; i++) {
+
+    $("#image").append('<div id="pos' + (i + 1) + '" class="sq' + arr[i] + '"></div>');
+
+}
+
+var bg = $(".puzzleSection #image").css('background-image').replace(/^url|[\(\)]/g, '');
+
+$(".puzzleSection #image div").css('background-image', 'url(' + bg + ')');
+
+$(".puzzleSection #image").css('background-image', 'none');
+
+
+$("#image").sortable();  
+ 
+}
+</script>
+
+  <style>
+
+
+
+#image {
+    width: 400px;
+    height: 400px;
+    background-image: url(https://www.theartstory.org/images20/works/rubens_peter_paul_5.jpg);
+    position: relative;
+}
+
+#image div {
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.puzzleSection {
+    display: inline-block;
+    vertical-align: middle;
+}
+  .sq1 {
+    background-position: 0 0;
+}
+
+.sq2 {
+    background-position: 33% 0;
+}
+
+.sq3 {
+    background-position: 66% 0;
+}
+
+.sq4 {
+    background-position: 100% 0;
+}
+
+.sq5 {
+    background-position: 0 33%;
+}
+
+.sq6 {
+    background-position: 33% 33%;
+}
+
+.sq7 {
+    background-position: 66% 33%;
+}
+
+.sq8 {
+    background-position: 100% 33%;
+}
+
+.sq9 {
+    background-position: 0 66%;
+}
+
+.sq10 {
+    background-position: 33% 66%;
+}
+
+.sq11 {
+    background-position: 66% 66%;
+}
+
+.sq12 {
+    background-position: 100% 66%;
+}
+
+.sq13 {
+    background-position: 0 100%;
+}
+
+.sq14 {
+    background-position: 33% 100%;
+}
+
+.sq15 {
+    background-position: 66% 100%;
+}
+
+.sq16 {
+    background-position: 100% 100%;
+}
+
+#pos1 {
+    top: 0;
+    left: 0;
+}
+
+#pos2 {
+    top: 0;
+    left: 25%;
+}
+
+#pos3 {
+    top: 0;
+    left: 50%;
+}
+
+#pos4 {
+    top: 0;
+    left: 75%;
+}
+
+#pos5 {
+    top: 25%;
+    left: 0;
+}
+
+#pos6 {
+    top: 25%;
+    left: 25%;
+}
+
+#pos7 {
+    top: 25%;
+    left: 50%;
+}
+
+#pos8 {
+    top: 25%;
+    left: 75%;
+}
+
+#pos9 {
+    top: 50%;
+    left: 0;
+}
+
+#pos10 {
+    top: 50%;
+    left: 25%;
+}
+
+#pos11 {
+    top: 50%;
+    left: 50%;
+}
+
+#pos12 {
+    top: 50%;
+    left: 75%;
+}
+
+#pos13 {
+    top: 75%;
+    left: 0;
+}
+
+#pos14 {
+    top: 75%;
+    left: 25%;
+}
+
+#pos15 {
+    top: 75%;
+    left: 50%;
+}
+
+#pos16 {
+    top: 75%;
+    left: 75%;
+}
+
+
+
+
+
+  </style>
+</head>
+
+<body >
+  <div class="puzzleSection">
+
+    <div id="image"></div>
+
+    
+
+</div>
+
+	<button onclick=startGame();>Click here and the image will change.</button>
+	<button onclick=change();>Try it</button>
+	<input id ="input" type="file" multiple>
+	<div id="x1"> 6666</div>
+
+<canvas id="canvas"><canvas>
+	
+    </body>
+
+
+</html>
